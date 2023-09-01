@@ -12,7 +12,6 @@ const [content, setContent] = useState("");
 
 const handleContentChange = (data) => {
   const x = data.split(/\r?\n/).join('\n');
-
   setContent(x);
 }
   return (

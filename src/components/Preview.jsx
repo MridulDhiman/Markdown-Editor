@@ -5,12 +5,16 @@ import UIstyles from "./Container.module.css";
 
 const Preview = ({content})=> {
 
-
+const actualContent = content.split("\n");
 
     return (
 <div  className={`${styles["preview"]} ${UIstyles['container']}`}>
     <h3>Hello from Preview</h3>
-  <p>{content}</p>
+{
+    actualContent.map((line) => {
+        return <p>{line}</p>
+    })
+}
 </div>
     )
 }
