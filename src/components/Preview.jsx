@@ -98,12 +98,27 @@ const actualContent = content.split("\n");
                <>
                {y && <img alt={y[1]}></img>}
                {x && <img alt={x[1]} src={x[2]} style={{width: "100%", objectFit: "contain"}}></img>}
-               {z && <img alt={"random alt"} src={z[1]} style={{width: "100%", objectFit: "contain"}}></img>}
+               {z && <img alt={""} src={z[1]} style={{width: "100%", objectFit: "contain"}}></img>}
                </>
             )
             
          }
-      
+
+         const r4 = /^\[([^\]]+)\]\(\)/;
+         const r5 = /^\[([^\]]+)\]\(([^)]+)\)/;
+
+         const a = r4.exec(line.trim());
+         const b = r5.exec(line.trim());
+
+         if(a || b) {
+            return (
+                <>
+                {a && <a href={""}>{a[1]}</a>}
+                {b && <a href={b[2]}>{b[1]}</a>}
+                </>
+            )
+         }
+
         return <p>{line}</p>
     })
 }
