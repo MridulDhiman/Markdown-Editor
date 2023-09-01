@@ -1,14 +1,13 @@
-.markdown {
-    /* height: 75vh; */
-    background: grey;
-    color: white;
-}
+
 
 .markdown-input {
     width: 100%;
     height: 100%;
     resize: none;
     outline: none;
+    border:none;
+    background: navy;
+    color: white;
 }
 .markdown-input:focus {
     outline: none;

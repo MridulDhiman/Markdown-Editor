@@ -9,7 +9,7 @@ const Markdown = ({onContentChange})=> {
     }
     return (
 <div className={`${styles["markdown"]} ${UIstyles['container']}`}>
-    {/* <h3>Hello From Markdown</h3> */}
+    <h3>Hello From Markdown</h3>
     <textarea name="markdown" className={styles['markdown-input']} onChange={handleChange}></textarea>
 </div>
     )

@@ -31,6 +31,21 @@ const actualContent = content.split("\n");
         else if(line.startsWith("###### ")) {
             return <h6>{line.slice(7)}</h6>
         }
+        if(line.startsWith("**") && line.endsWith("**") ) {
+           return (
+            <strong>
+                {line.split("**").join("")}
+            </strong>
+           )
+        }
+         else if (line.startsWith("*")  && line.endsWith("*")) {
+          return (
+            <em>
+                {line.split("*").join("")}
+            </em>
+          )
+          
+        }
         return <p>{line}</p>
     })
 }
