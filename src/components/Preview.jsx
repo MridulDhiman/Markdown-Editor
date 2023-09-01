@@ -12,7 +12,11 @@ const actualContent = content.split("\n");
     <h3>Hello from Preview</h3>
 {
     actualContent.map((line) => {
-        if(line.trim() === "---") {
+
+        line = line.trim();
+
+
+        if(line === "---") {
             console.log("its working");
               return <hr/>
         }
@@ -77,6 +81,29 @@ const actualContent = content.split("\n");
           )
           
         }
+
+         // working on image
+         const r1 = /^!\[([^\]]+)\]\(([^)]+)\)/;
+         const r2 = /^!\[([^\]]+)\]\(\)/;
+         const r3 = /^!\[\]\(([^)]+)\)/;
+         const x = r1.exec(line.trim());
+         const y = r2.exec(line.trim());
+         const z = r3.exec(line.trim());
+
+
+        
+         
+         if(x || y || z) {
+            return (
+               <>
+               {y && <img alt={y[1]}></img>}
+               {x && <img alt={x[1]} src={x[2]} style={{width: "100%", objectFit: "contain"}}></img>}
+               {z && <img alt={"random alt"} src={z[1]} style={{width: "100%", objectFit: "contain"}}></img>}
+               </>
+            )
+            
+         }
+      
         return <p>{line}</p>
     })
 }
