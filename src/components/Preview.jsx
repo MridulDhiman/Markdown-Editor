@@ -58,16 +58,22 @@ const actualContent = content.split("\n");
         }
         if(line.startsWith("**") && line.endsWith("**") ) {
            return (
-            <strong>
+            <div>
+              <strong>
                 {line.split("**").join("")}
             </strong>
+            </div>
+          
            )
         }
          else if (line.startsWith("*")  && line.endsWith("*")) {
           return (
+            <div>
             <em>
                 {line.split("*").join("")}
             </em>
+            </div>
+            
           )
           
         }
