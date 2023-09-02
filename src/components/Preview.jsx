@@ -9,6 +9,7 @@ const Preview = ({content})=> {
 
 const actualContent = content.split("\n");
 
+
     return (
 <div  className={`${styles["preview"]} ${UIstyles['container']}`}>
     <h3>Hello from Preview</h3>
