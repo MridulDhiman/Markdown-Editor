@@ -10,10 +10,10 @@ const Preview = ({content, isEntered})=> {
 const actualContent = content.split("\n").map((line) => {
     line = line.trim();
       
-    //  if(line === "---") {
-    //     console.log("its working");
-    //       return <hr/>
-    // }
+     if(line === "---") {
+        console.log("its working");
+          return <hr/>
+    }
 
 
     if(line.startsWith("# ")){
@@ -122,12 +122,6 @@ const actualContent = content.split("\n").map((line) => {
                 </li> 
         )
      }
-
-    // if(isEntered && isUnorderedList){
-    //     return (
-    //         <li>{hello}</li>
-    //     )
-    // }
     
     return <p>{line}</p>
 })

@@ -8,11 +8,6 @@ const Markdown = ({onContentChange,onEnter})=> {
         onContentChange(e.target.value);  
     }
 
-    const handleKeyDown = (e)=> {
-        if(e.key === "Enter") {
-                onEnter(true);
-        }
-    }
     return (
 <div className={`${styles["markdown"]} ${UIstyles['container']}`}>
     <h3>Hello From Markdown</h3>
