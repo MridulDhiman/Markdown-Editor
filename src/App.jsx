@@ -18,7 +18,7 @@ const handleContentChange = (data) => {
     <div className={styles["whole"]}>
     <Header/>
     <div className={styles["main"]}>
-    <Markdown onContentChange={handleContentChange}/> 
+    <Markdown onContentChange={handleContentChange} actualContent={content}/> 
     <Preview content={content}/>
     </div>
      </div>
