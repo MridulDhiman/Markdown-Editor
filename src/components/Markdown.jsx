@@ -10,6 +10,12 @@ const Markdown = ({actualContent, onContentChange})=> {
       onContentChange(e.target.value);
     }
 
+
+    const handleKeyDown = (e) => {
+if(e.key === "Enter") {
+    onContentChange(`${actualContent}\n`);
+}
+    }
     const handlePaste = (e) => {
 // console.log(e.clipboardData.getData("text");
 // console.log(e.clipboardData.items)
@@ -37,7 +43,7 @@ for(let i = 0;i<items.length;i++) {
     return (
 <div className={`${styles["markdown"]} ${UIstyles['container']}`}>
     <h3>Hello From Markdown</h3>
-    <textarea name="markdown" className={styles['markdown-input']} value={actualContent} onChange={handleChange} onPaste={handlePaste}></textarea>
+    <textarea name="markdown" className={styles['markdown-input']} value={actualContent} onChange={handleChange} onPaste={handlePaste} onKeyDown={handleKeyDown}></textarea>
 </div>
     )
 }
