@@ -1,21 +1,26 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 
 import styles from "./Markdown.module.css";
 import UIstyles  from "./Container.module.css";
 
 const Markdown = ({actualContent, onContentChange})=> {
 
+const messageEndRef = useRef(null);
+
+const scrollToBottom = () => {
+    messageEndRef.current?.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+useEffect(()=> {
+    scrollToBottom();
+});
 
     const handleChange = (e)=> {
       onContentChange(e.target.value);
     }
 
-
-    const handleKeyDown = (e) => {
-if(e.key === "Enter") {
-    onContentChange(`${actualContent}\n`);
-}
-    }
     const handlePaste = (e) => {
 // console.log(e.clipboardData.getData("text");
 // console.log(e.clipboardData.items)
@@ -33,7 +38,6 @@ for(let i = 0;i<items.length;i++) {
            const markdownImg = `![copied image](${src})`;
         const modifiedContent = `${actualContent}\n${markdownImg}\n`;
         onContentChange(modifiedContent);
-            // console.log(e.target.result)
         }
         reader.readAsDataURL(file);
     }
@@ -43,7 +47,8 @@ for(let i = 0;i<items.length;i++) {
     return (
 <div className={`${styles["markdown"]} ${UIstyles['container']}`}>
     <h3>Hello From Markdown</h3>
-    <textarea name="markdown" className={styles['markdown-input']} value={actualContent} onChange={handleChange} onPaste={handlePaste} onKeyDown={handleKeyDown}></textarea>
+    <textarea name="markdown" className={styles['markdown-input']} value={actualContent} onChange={handleChange} onPaste={handlePaste} ref={messageEndRef}></textarea>
+    {/* <div ref={messageEndRef}></div> */}
 </div>
     )
 }
