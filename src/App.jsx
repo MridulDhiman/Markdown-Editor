@@ -9,9 +9,10 @@ import "./main.css";
 
 function App() {
 const [content, setContent] = useState("");
-// const [markdownData, setMarkDowndata] = useState("");
+
 
 const handleContentChange = (data) => {
+  
   const x = data.split(/\r?\n/).join('\n');
   setContent(x);
 }

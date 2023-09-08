@@ -52,7 +52,7 @@ for(let i = 0;i<items.length;i++) {
     };
     
     return (
-<div className={`${styles["markdown"]} ${UIstyles['container']}`} >
+<div className={`${styles["markdown"]} ${UIstyles['container']}`}  >
     <h3>Hello From Markdown</h3>
     <textarea ref={textAreaRef} name="markdown" className={styles['markdown-input']} value={actualContent} onChange={handleChange} onPaste={handlePaste}></textarea>
 </div>
