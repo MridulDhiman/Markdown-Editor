@@ -8,6 +8,7 @@
     border:none;
     background: navy;
     color: white;
+    overflow-x: hidden;
 }
 .markdown-input:focus {
     outline: none;
