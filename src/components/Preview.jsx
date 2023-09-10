@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState ,useEffect, useRef} from "react";
 
 import styles from "./Preview.module.css";
 import UIstyles from "./Container.module.css";
@@ -6,17 +6,22 @@ import {marked} from "marked";
 
 
 const Preview = ({content})=> {
-
-
 const actualContent = content.split("\n");
+let divRef = useRef(null);
 
+useEffect(()=> {
+if(divRef.current) {
+    // divRef.current.scrollIntoView({behaviour: "smooth"})
+    divRef.current.scrollTop = divRef.current.scrollHeight;
+}
+}, [actualContent]);
 
 
     return (
-<div className={`${styles["preview"]} ${UIstyles['container']}`}>
+<div className={`${styles["preview"]} ${UIstyles['container']}`} ref={divRef}>
     <h3>Hello from Preview</h3>
 
-    
+<div ref={divRef}>
 {
     actualContent.map((line) => {
          const x = (marked.parse(line.trim()));
@@ -41,6 +46,7 @@ const actualContent = content.split("\n");
         return( <div dangerouslySetInnerHTML={{__html:  ((line.trim().startsWith("* ") || line.trim().startsWith("- ")) && x.match(regex) )?  x.match(regex)?.input.slice(5, -7) : x}}></div>)
     })
 }
+</div>
 
 
 </div>
