@@ -29,6 +29,20 @@ if(divRef.current) {
          const regex2 = /^<ol/;
          const regex3 = /<li>([^<]+)<\/li>/;
          const regex4 = /="([^"]+)"/;
+         if(line.includes("`")) {
+            
+let prem = /`([^`]+)`/g;
+       let data = line.matchAll(prem);
+       let line2 = line;
+        for(let arr of data) {
+            const new_str = `<span style="color: rgba(0, 0, 0, 0.8);background: rgb(247, 232, 232);   padding: 3px;border-radius:  3px;width: fit-content;">${arr[0]}</span>`;
+              line2 = line.replace(arr[0], new_str);
+        }
+    
+        console.log(line2);
+        return <div dangerouslySetInnerHTML={{__html: marked.parse(line2)}}></div>
+           
+         }
 
          if(x.match(regex2)) {
             return(
