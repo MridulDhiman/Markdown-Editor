@@ -37,6 +37,7 @@ if(divRef.current) {
         let code = converter.makeHtml(line.trim());
          
         if(line.trim().match(/`([^`]+)`/)){
+            const data = /`([^`]+)`/.exec(line.trim());
            return <div style={{
             color: "rgba(0, 0, 0, 0.8)",
             background: "rgb(247, 232, 232)", 
@@ -44,7 +45,7 @@ if(divRef.current) {
               borderRadius:  "3px",
               width:"fit-content"
             }} 
-            dangerouslySetInnerHTML={{__html: code}} ></div>;
+            >{data[1]}</div>;
         }
 
         
