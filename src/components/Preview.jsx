@@ -1,4 +1,5 @@
 import React, {useState ,useEffect, useRef} from "react";
+import Showdown from "showdown";
 
 import styles from "./Preview.module.css";
 import UIstyles from "./Container.module.css";
@@ -6,6 +7,7 @@ import {marked} from "marked";
 
 
 const Preview = ({content})=> {
+   
 const actualContent = content.split("\n");
 let divRef = useRef(null);
 
@@ -15,6 +17,7 @@ if(divRef.current) {
     divRef.current.scrollTop = divRef.current.scrollHeight;
 }
 }, [actualContent]);
+
 
 
     return (
@@ -29,20 +32,22 @@ if(divRef.current) {
          const regex2 = /^<ol/;
          const regex3 = /<li>([^<]+)<\/li>/;
          const regex4 = /="([^"]+)"/;
-         if(line.includes("`")) {
-            
-let prem = /`([^`]+)`/g;
-       let data = line.matchAll(prem);
-       let line2 = line;
-        for(let arr of data) {
-            const new_str = `<span style="color: rgba(0, 0, 0, 0.8);background: rgb(247, 232, 232);   padding: 3px;border-radius:  3px;width: fit-content;">${arr[0]}</span>`;
-              line2 = line.replace(arr[0], new_str);
+
+        let converter = new Showdown.Converter();
+        let code = converter.makeHtml(line.trim());
+         
+        if(line.trim().match(/`([^`]+)`/)){
+           return <div style={{
+            color: "rgba(0, 0, 0, 0.8)",
+            background: "rgb(247, 232, 232)", 
+              padding: "3px",
+              borderRadius:  "3px",
+              width:"fit-content"
+            }} 
+            dangerouslySetInnerHTML={{__html: code}} ></div>;
         }
-    
-        console.log(line2);
-        return <div dangerouslySetInnerHTML={{__html: marked.parse(line2)}}></div>
-           
-         }
+
+        
 
          if(x.match(regex2)) {
             return(
